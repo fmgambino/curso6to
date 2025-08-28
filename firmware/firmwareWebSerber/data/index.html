@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="es" data-theme="light">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ESP32 • Monitoreo DHT22</title>
+  <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+  <link rel="stylesheet" href="/styles.css" />
+
+  <!-- SweetAlert2 (popup) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!-- Chart.js (gráficos en el popup) -->
+  <script defer src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+  <!-- App -->
+  <script defer src="/app.js"></script>
+</head>
+<body>
+  <!-- NAVBAR -->
+  <header class="navbar">
+    <div class="brand">
+      <!-- Logo simple SVG -->
+      <svg class="logo" viewBox="0 0 48 48" aria-hidden="true">
+        <circle cx="24" cy="24" r="22" fill="currentColor" opacity="0.1"></circle>
+        <path d="M8 30c6-10 26-10 32 0" stroke="currentColor" stroke-width="3" fill="none" stroke-linecap="round"/>
+        <circle cx="24" cy="20" r="5" stroke="currentColor" stroke-width="3" fill="none"/>
+      </svg>
+      <span>ESP32 • DHT22</span>
+    </div>
+
+    <!-- Toggle claro/oscuro -->
+    <button id="themeToggle" class="toggle" aria-label="Cambiar tema" title="Cambiar tema">
+      <svg class="icon sun" viewBox="0 0 24 24" aria-hidden="true">
+        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="2" fill="none"/>
+        <g stroke="currentColor" stroke-linecap="round" stroke-width="2">
+          <line x1="12" y1="1" x2="12" y2="4"/><line x1="12" y1="20" x2="12" y2="23"/>
+          <line x1="1" y1="12" x2="4" y2="12"/><line x1="20" y1="12" x2="23" y2="12"/>
+          <line x1="4.2" y1="4.2" x2="6.3" y2="6.3"/><line x1="17.7" y1="17.7" x2="19.8" y2="19.8"/>
+          <line x1="4.2" y1="19.8" x2="6.3" y2="17.7"/><line x1="17.7" y1="6.3" x2="19.8" y2="4.2"/>
+        </g>
+      </svg>
+      <svg class="icon moon" viewBox="0 0 24 24" aria-hidden="true">
+        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" fill="currentColor"/>
+      </svg>
+    </button>
+  </header>
+
+  <!-- CONTENIDO -->
+  <main class="container">
+    <!-- Tarjeta Temperatura -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title">
+          <svg class="metric-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M10 14.5V5a2 2 0 1 1 4 0v9.5a4 4 0 1 1-4 0z" stroke="currentColor" stroke-width="2" fill="none"/>
+            <line x1="12" y1="7" x2="14" y2="7" stroke="currentColor" stroke-width="2" />
+          </svg>
+          <h2>Temperatura</h2>
+        </div>
+        <button id="openCharts" class="icon-btn" title="Ver gráficos (por fecha)">
+          <svg class="chart-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <rect x="3" y="10" width="4" height="10" rx="1" fill="currentColor"></rect>
+            <rect x="10" y="6" width="4" height="14" rx="1" fill="currentColor"></rect>
+            <rect x="17" y="3" width="4" height="17" rx="1" fill="currentColor"></rect>
+          </svg>
+        </button>
+      </div>
+      <div class="value">
+        <span id="tempValue">--.-</span><span class="unit">°C</span>
+      </div>
+      <p class="muted">Actualizado: <span id="lastUpdate">--:--:--</span></p>
+    </section>
+
+    <!-- Tarjeta Humedad -->
+    <section class="card">
+      <div class="card-head">
+        <div class="card-title">
+          <svg class="metric-icon" viewBox="0 0 24 24" aria-hidden="true">
+            <path d="M12 3C12 3 5 10 5 14a7 7 0 0 0 14 0c0-4-7-11-7-11z" stroke="currentColor" stroke-width="2" fill="none"/>
+          </svg>
+          <h2>Humedad</h2>
+        </div>
+      </div>
+      <div class="value">
+        <span id="humValue">--</span><span class="unit">%</span>
+      </div>
+      <p class="muted">Estado: <span id="humState">—</span></p>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <small>ESP32 WebServer • Demo DHT22 (simulado)</small>
+  </footer>
+</body>
+</html>
