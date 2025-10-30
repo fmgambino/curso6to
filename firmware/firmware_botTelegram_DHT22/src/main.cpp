@@ -298,7 +298,7 @@ void loop() {
   if (WiFi.status() == WL_CONNECTED) {
     int numMessages = bot.getUpdates(bot.last_message_received + 1);
     if (numMessages > 0) {
-      handleNewMessages(numNewMessages);
+      handleNewMessages(numMessages);
     }
   }
 
